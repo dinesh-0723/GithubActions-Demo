@@ -6,4 +6,4 @@ jobs:
     runs-on: ubunut-latest
     steps:
       - name: my-step
-        run: echo "Hello World"
+        run: echo "HeloMass"
