@@ -21,7 +21,18 @@ jobs:
         run: echo "Last Output"
       - name: Echo last after
         run: uname -a
-
+      - name: Echo input
+        run: echo "Input value is ${{ github.event.inputs.exampleInput }}"
+      - name: Echo input
+        run: echo "Last Output"
+      - name: Echo last after
+        run: uname -a      
+      - name: Echo input
+        run: echo "Input value is ${{ github.event.inputs.exampleInput }}"
+      - name: Echo input
+        run: echo "Last Output"
+      - name: Echo last after
+        run: uname -a
   test:
     runs-on: ubuntu-latest
     #needs: build
