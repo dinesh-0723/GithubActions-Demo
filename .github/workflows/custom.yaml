@@ -35,7 +35,7 @@ jobs:
         run: uname -a
   test:
     runs-on: ubuntu-latest
-    #needs: build
+    needs: build
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
