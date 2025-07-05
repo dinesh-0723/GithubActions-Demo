@@ -1,5 +1,6 @@
-name: Manual-Trigger-Example
+name: Manual-Trigger-Example  # Name of the Pipeline 
 
+# Manual Run The Pipeline
 on:
   workflow_dispatch:
     inputs:
