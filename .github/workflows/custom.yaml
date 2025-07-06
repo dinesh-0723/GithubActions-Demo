@@ -39,7 +39,9 @@ jobs:
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
   buildod: # The job name
-    runs-on: ubuntu-latest # This job will run on Ubuntu  
+    runs-on: ubuntu-latest # This job will run on Ubuntu
+    needs: Azure
+    
 
     steps: # The job contains steps that define tasks to perform in the job
     - name: Checkout Repository # This step checks out a copy of your repository
