@@ -35,6 +35,11 @@ jobs:
         working-directory: terraform
 
     steps:
+      - name: Azure Login
+        uses: Azure/login@v1.5.1
+        with:
+          creds: ${{ secrets.GITHUBACTION_SPN }}
+          
       - name: Checkout code
         uses: actions/checkout@v2
 
