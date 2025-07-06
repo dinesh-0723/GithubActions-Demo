@@ -38,20 +38,8 @@ jobs:
         run: |
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
-  buildod: # The job name
-    runs-on: ubuntu-latest # This job will run on Ubuntu
-    needs: Azure
-    
-
-    steps: # The job contains steps that define tasks to perform in the job
-    - name: Checkout Repository # This step checks out a copy of your repository
-      uses: actions/checkout@v3 # This is the action you are using
-
-    - name: Checkout Repository # This step checks out a copy of your repository
-      uses: actions/checkout@v3 # This is the action you are using
-
-    - name: 'Log into Azure using github secret GITHUBACTION_SPN'
-      uses: Azure/login@v1.5.1 
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }} # This references the secret you created earlier
-        enable-AzPSSession: true # This enables the Az Powershell session
+      - name: 'Log into Azure using github secret GITHUBACTION_SPN'
+        uses: Azure/login@v1.5.1 
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }} # This references the secret you created earlier
+          enable-AzPSSession: true # This enables the Az Powershell session
