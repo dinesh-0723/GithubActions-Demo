@@ -1,6 +1,6 @@
 terraform {
   backend "azurerm" {
-    resource_group_name  = "your_resource_group_name"
+    resource_group_name  = "demo-rg-01"
     storage_account_name  = "stgac01"
     container_name        = "stgaccr01"
     key                   = "vnet.tfstate"
