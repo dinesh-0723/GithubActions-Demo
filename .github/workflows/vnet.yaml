@@ -1,0 +1,58 @@
+name: azure-vnet # Name of the Pipeline 
+
+# Manual Run The Pipeline
+on:
+  workflow_dispatch:
+    inputs:
+      exampleInput:
+        description: 'An example input'
+        required: false
+        default: 'default value'
+
+jobs:
+  azure-cli:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      
+      - name: Azure Login
+        uses: Azure/login@v1.5.1
+        with:
+          creds: ${{ secrets.GITHUBACTION_SPN }}
+
+  terraform:
+    runs-on: ubuntu-latest
+    needs: azure-cli
+    defaults:
+      run:
+        working-directory: terraform
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Azure Login
+        uses: Azure/login@v1.5.1
+        with:
+          creds: ${{ secrets.GITHUBACTION_SPN }}
+          
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.0.0
+
+      - name: Terraform Init
+        run: terraform init
+      
+      - name: Terraform Validate
+        run: terraform validate
+
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
