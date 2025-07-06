@@ -14,19 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install Azure CLI
-        run: |
-          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-
-      - name: Log in to Azure
-        run: |
-          echo "${{ secrets.AZURE_CLIENT_SECRET }}" | az login --service-principal -u "${{ secrets.AZURE_CLIENT_ID }}" -p - --tenant "${{ secrets.AZURE_TENANT_ID }}"
-
-      - name: Execute Azure CLI Command
-        run: |
-          az account set --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-          # Replace the following command with your desired Azure CLI command
-          az group list
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      
+      - name: Login
+        uses: Azure/login@v1.5.1
+        with:
+          creds: ${{ secrets.GITHUBACTION_SPN }}
