@@ -27,7 +27,7 @@ jobs:
     needs: azure-cli
     defaults:
       run:
-        working-directory: terraform
+        working-directory: terraform/vnet
 
     steps:
       - name: Checkout code
