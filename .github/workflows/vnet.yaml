@@ -1,6 +1,6 @@
 name: azure-vnet # Name of the Pipeline 
 
-# Manual Run The Pipeline
+# Manual Run The Pipelines
 on:
   workflow_dispatch:
     inputs:
